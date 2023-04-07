@@ -19,6 +19,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 import logging
 import mysql_operate
+import json
 
 logging.basicConfig(level=logging.INFO)
 
@@ -104,11 +105,22 @@ def is_xpath_exist(bro, xpath):
         return False
 
 
+def is_draw(bro, xpath):
+    try:
+        var = bro.find_element(By.XPATH, xpath).text
+        if "抽奖" in var:
+            return True
+        else:
+            return False
+    except:
+        return False
+
+
 def do_share(bro, chains, fans_id, userId):
     try:
         url = 'https://space.bilibili.com/' + fans_id + '/dynamic'
         bro.get(url)
-        sleep(12)
+        sleep(5)
         i = 1
         share_list = bro.find_elements(By.XPATH, '//*[@id="page-dynamic"]/div[1]/div/div[1]/*/div/div')
         dyn_id_list = []
@@ -123,20 +135,20 @@ def do_share(bro, chains, fans_id, userId):
                     if "小时" in time or "分钟" in time or "刚刚" in time or "昨天" in time:
                         # 判断是否互动抽奖
                         is_draw_name = '//*[@id="page-dynamic"]/div[1]/div/div[1]/div[' + str(
-                            i) + ']/div/div/div[3]/div/div[2]/div[2]/div/div[1]/span[2]'
-                        if is_xpath_exist(bro, is_draw_name) is False:
-                            success = True
-                        dyn_id = x.find_element(By.XPATH,
-                                                '//*[@id="page-dynamic"]/div[1]/div/div[1]/div[' + str(
-                                                    i) + ']/div/div/div[3]/div/div[2]/div[3]/div').get_attribute(
-                            "dyn-id")
-                        # 保存所有的要转发的ID
-                        dyn_id_list.append(dyn_id)
+                            i) + ']/div/div/div[3]/div/div[2]'
+                        if is_draw(bro, is_draw_name) is True:
+                            # success = True
+                            dyn_id = x.find_element(By.XPATH,
+                                                    '//*[@id="page-dynamic"]/div[1]/div/div[1]/div[' + str(
+                                                        i) + ']/div/div/div[3]/div/div[2]/div[3]/div').get_attribute(
+                                "dyn-id")
+                            # 保存所有的要转发的ID
+                            dyn_id_list.append(dyn_id)
                     success = True
                 except Exception as e1:
                     attempt = attempt + 1
                     logging.info("Retrying : find share list")
-                    sleep(15 + attempt * 5)
+                    sleep(1 + attempt * 5)
                     if attempt == 5:
                         flag = True
                         logging.warning('Retry Up 5 Times, try to refresh url')
@@ -147,7 +159,7 @@ def do_share(bro, chains, fans_id, userId):
             logging.warning('refresh url .....')
             url = 'https://space.bilibili.com/' + fans_id + '/dynamic'
             bro.get(url)
-            sleep(12)
+            sleep(5)
             i = 1
             share_list = bro.find_elements(By.XPATH, '//*[@id="page-dynamic"]/div[1]/div/div[1]/*/div/div')
             for x in share_list:
@@ -159,24 +171,24 @@ def do_share(bro, chains, fans_id, userId):
                         if "小时" in time or "分钟" in time or "刚刚" in time or "昨天" in time:
                             # 判断是否互动抽奖
                             is_draw_name = '//*[@id="page-dynamic"]/div[1]/div/div[1]/div[' + str(
-                                i) + ']/div/div/div[3]/div/div[2]/div[2]/div/div[1]/span[2]'
-                            if is_xpath_exist(bro, is_draw_name) is False:
-                                success = True
-                            dyn_id = x.find_element(By.XPATH,
-                                                    '//*[@id="page-dynamic"]/div[1]/div/div[1]/div[' + str(
-                                                        i) + ']/div/div/div[3]/div/div[2]/div[3]/div').get_attribute(
-                                "dyn-id")
-                            # 保存所有的要转发的ID
-                            dyn_id_list.append(dyn_id)
+                                i) + ']/div/div/div[3]/div/div[2]'
+                            if is_draw(bro, is_draw_name) is True:
+                                # success = True
+                                dyn_id = x.find_element(By.XPATH,
+                                                        '//*[@id="page-dynamic"]/div[1]/div/div[1]/div[' + str(
+                                                            i) + ']/div/div/div[3]/div/div[2]/div[3]/div').get_attribute(
+                                    "dyn-id")
+                                # 保存所有的要转发的ID
+                                dyn_id_list.append(dyn_id)
                         success = True
                     except Exception as e1:
                         attempt = attempt + 1
                         logging.info("Retrying : find share list")
-                        sleep(15 + attempt * 5)
+                        sleep(1 + attempt * 5)
                         if attempt == 5:
                             logging.error("Retrying Fail, Error To DB: find share list fail!")
                             error_to_log("start_forward",
-                                         "fans_id: " + fans_id + " 转发动态[寻找转发列表]出错：" + repr(type(e1)), "p2")
+                                         "fans_id: " + fans_id + " 转发动态[寻找转发列表]出错：" + repr(e1), "p2")
                             break
                 i = i + 1
 
@@ -196,32 +208,32 @@ def do_share(bro, chains, fans_id, userId):
 
                     new_url = 'https://t.bilibili.com/' + dyn_id
                     bro.get(new_url)
-                    sleep(12)
+                    sleep(5)
 
                     # 移动到头像
                     touxiang = bro.find_element(By.XPATH, '//*[@id="app"]/div[2]/div/div/div[1]/div[1]/div')
-                    sleep(3)
+                    sleep(2)
                     chains.move_to_element(touxiang).perform()
-                    sleep(3)
+                    sleep(2)
 
                     # 点击关注
                     follow = bro.find_element(By.XPATH, '/html/body/div[3]/div/div/div[2]/div[3]/div[1]')
                     follow_text = follow.get_attribute('innerText')
-                    sleep(3)
+                    sleep(2)
                     if "已关注" not in follow_text:
                         chains.click(follow).perform()
 
-                    sleep(3)
+                    sleep(1)
                     share_btn = bro.find_element(By.XPATH, '//*[@id="app"]/div[2]/div/div/div[1]/div[4]/div[1]/div/i')
-                    sleep(3)
+                    sleep(1)
                     chains.click(share_btn).perform()
-                    sleep(3)
+                    sleep(1)
                     do_share_btn = bro.find_element(By.XPATH,
                                                     '//*[@id="app"]/div[2]/div/div/div[2]/div[1]/div[1]/div/div[2]/div[2]/div['
                                                     '2]/button')
-                    sleep(3)
+                    sleep(2)
                     chains.click(do_share_btn).perform()
-                    sleep(3)
+                    sleep(2)
 
                     # 保存记录
                     params = {}
@@ -244,7 +256,7 @@ def do_share(bro, chains, fans_id, userId):
                     attempt = attempt + 1
                     sleep(5)
                     if attempt == 3:
-                        error_to_log_more("start_forward", "转发动态[执行转发or入库]出错：" + repr(type(e2)), "p1",
+                        error_to_log_more("start_forward", "转发动态[执行转发or入库]出错：" + json.dumps(e2), "p1",
                                           dyn_id)
                         break
     except Exception as e3:
@@ -268,7 +280,7 @@ def init_db(db_name):
 def get_fans_list():
     try:
         db = init_db('bilibili')
-        sql = "SELECT * FROM t_fans;"
+        sql = "SELECT * FROM t_fans where update_time >= '2023';"
         data = db.select_db(sql)  # 用mysql_operate文件中的db的select_db方法进行查询
         list = []
         for fans in data:
@@ -367,11 +379,9 @@ if __name__ == '__main__':
     # cond_dict['fans_id'] = '8275236'
     # db.update('t_fans', params, cond_dict)
 
-
-
+    start_forward()
     logging.info("start main task")
-    schedule.every().day.at("08:35").do(start_forward)
-    # schedule.every().day.at("23:56").do(start_forward)
+    schedule.every().day.at("10:35").do(start_forward)
     while True:
         try:
             schedule.run_pending()
