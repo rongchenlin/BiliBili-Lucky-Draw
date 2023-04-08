@@ -14,6 +14,43 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 
 <img src="img/Readme.assets/image-20230407114451309.png" alt="image-20230407114451309" style="zoom:67%;" />
 
+### 环境
+Python： 3.7 版本以上
+
+Chrome与chromedriver.exe的版本关系，参考这里：[chromedriver下载地址](http://chromedriver.storage.googleapis.com/index.html)
+
 ### 使用
 
-clone本项目，然后启动start_get_user.bat和start_main.bat两个脚本
+修改数据库配置：
+
+全局搜索`def init_db`，然后修改数据库配置：
+
+<img src="img/Readme.assets/image-20230408111029045.png" alt="image-20230408111029045" style="zoom:50%;" />
+
+clone本项目，然后启动start_get_user.bat和start_share.bat两个脚本
+
+注意：修改脚本中对应的路径：
+
+例如：start_main.bat脚本修改的地方
+
+```ba
+@echo off
+echo "start ..."
+# 修改下面的路径
+C:\Users\Administrator\Desktop\Bilibili
+cd venv
+cd Scripts
+call activate.bat
+cd ../..
+python do_share.py
+pause
+```
+
+同理，start_get_user.bat也是这样修改的
+
+### 说明
+
+`login_gen_cookie.py`：用于第一次使用生成cookie的，通过运行该文件，然后用自己的手机端Bilibili扫码登录，登录成功后将在本地生成cookie文件
+
+`bilibili-dump.sql`：数据库和表结构
+
