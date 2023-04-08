@@ -265,10 +265,10 @@ def do_share(bro, chains, fans_id, userId):
 
 def init_db(db_name):
     config = {
-        'host': '123.56.224.232',
+        'host': '123.XXX.XXX.XX2',
         'port': 3306,
         'user': 'bilibili',
-        'passwd': 'bilibili',
+        'passwd': 'XXXXX',
         'charset': 'utf8',
         'cursorclass': pymysql.cursors.DictCursor
     }
