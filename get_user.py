@@ -122,10 +122,10 @@ def check_user(bro, chains, fans_id):
 
 def init_db(db_name):
     config = {
-        'host': '123.56.224.232',
+        'host': '123.XX.XX.232',
         'port': 3306,
         'user': 'bilibili',
-        'passwd': 'bilibili',
+        'passwd': 'XXXXXX',
         'charset': 'utf8',
         'cursorclass': pymysql.cursors.DictCursor
     }
