@@ -329,8 +329,8 @@ def start_forward():
 
         try:
             logging.info('开始转发')
-            url1 = 'https://sctapi.ftqq.com/SCT172323TZn2oLYosf0TJY80XSH7KN29R.send'
-            url2 = 'https://sctapi.ftqq.com/SCT63874Tus7GmUoMlz6b2iJNxrQ1gUws.send'
+            url1 = 'https://sctapi.ftqq.com/SCTxxxxxxxxxxx29R.send'
+            url2 = 'https://sctapi.ftqq.com/SCTxxxxxxxxxxxxxs.send'
             desp = '动态转发程序\r\n\r\n开始运行时间：' + start_time + '\r\n\r\n结束运行时间：' + finish_time + run_time_show + '\r\n\r\n扫描的用户数量：' + str(
                 list_len)
             data = {
