@@ -268,7 +268,7 @@ def init_db(db_name):
         'host': '123.56.224.232',
         'port': 3306,
         'user': 'bilibili',
-        'passwd': 'bilibili',
+        'passwd': 'bili22bili',
         'charset': 'utf8',
         'cursorclass': pymysql.cursors.DictCursor
     }

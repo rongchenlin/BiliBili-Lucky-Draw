@@ -54,3 +54,13 @@ pause
 
 `bilibili-dump.sql`：数据库和表结构
 
+### 附加
+
+大家可以在 方糖 上获取个人ID来监测自己程序运行情况，然后在代码这个地方进行修改
+
+`Bilibili\do_share.py`
+
+![image-20230410164206780](img/Readme.assets/image-20230410164206780.png)
+
+
+
