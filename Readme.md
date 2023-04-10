@@ -59,6 +59,6 @@ pause
 
 `Bilibili\do_share.py`
 
-![image-20230410164206780](img/Readme.assets/image-20230410164206780.png)
+![image-20230410164206780](img/Readme.assets/xxx.png)
 
 
