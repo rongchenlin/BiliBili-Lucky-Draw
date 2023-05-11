@@ -1,84 +1,21 @@
-import random
-from datetime import datetime
-from selenium import webdriver
-from lxml import etree
-from time import sleep
-# 实现无可视化界面
-from selenium.webdriver.chrome.options import Options
-# 实现规避检测
-from selenium.webdriver import ChromeOptions
 import json
-import time
-import schedule
-import requests
-import socket
-import pymysql
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver import ActionChains
-from selenium.webdriver.common.by import By
 import logging
-import mysql_operate
-import json
+import time
+from datetime import datetime
+from time import sleep
+
+import requests
+import schedule
+from selenium.webdriver.common.by import By
+
+from utils.customer_logger import print_run_time, error_to_log_more, error_to_log
+from utils.mysql_operate import init_db
+from utils.selenium_util import init_webdriver
 
 logging.basicConfig(level=logging.INFO)
 
 
-def init_webdriver():
-    # # 实现无可视化界面的操作
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-gpu')
-
-    # 实现规避检测的变量：option
-    option = ChromeOptions()
-    option.add_experimental_option('excludeSwitches', ['enable-automation'])
-
-    # 实现让selenium规避被检测到的风险
-
-    s = Service(r"./chromedriver.exe")
-    bro = webdriver.Chrome(service=s, chrome_options=chrome_options, options=option)
-    # bro = webdriver.Chrome(service=s)
-    chains = ActionChains(bro)
-    return bro, chains
-
-
-def error_to_log_more(function_name, content, note, retry_dyn_id):
-    try:
-        ip = get_host_ip()
-        db = init_db('bilibili')
-        # 保存记录
-        params = {}
-        params['function_name'] = function_name
-        params['content'] = str(content).replace('"', '').replace("'", '')[:2500]
-        params['note'] = note
-        params['ip'] = ip
-        params['retry_dyn_id'] = retry_dyn_id
-        params['insert_time'] = str(datetime.now())
-        db.insert('t_log', params)
-    except Exception as e:
-        logging.error(e)
-
-
-def error_to_log(function_name, content, note):
-    try:
-        ip = get_host_ip()
-        db = init_db('bilibili')
-        # 保存记录
-        params = {}
-        params['function_name'] = function_name
-        params['content'] = str(content).replace('"', '').replace("'", '')[:2500]
-        params['note'] = note
-        params['ip'] = ip
-        params['insert_time'] = str(datetime.now())
-        db.insert('t_log', params)
-    except Exception as e:
-        logging.error(e)
-    # finally:
-    #     # db.close()
-    #     print("日志完成入库")
-
-
+# 使用cookie登录
 def login_by_cookie(bro, cookie_path):
     try:
         with open(cookie_path, 'r', encoding='utf-8') as f:
@@ -97,14 +34,6 @@ def login_by_cookie(bro, cookie_path):
         error_to_log("login_by_cookie", "cookie登录失败", "p0")
 
 
-def is_xpath_exist(bro, xpath):
-    try:
-        bro.find_element(By.XPATH, xpath)
-        return True
-    except:
-        return False
-
-
 def is_draw(bro, xpath):
     try:
         var = bro.find_element(By.XPATH, xpath).text
@@ -114,7 +43,6 @@ def is_draw(bro, xpath):
             return False
     except:
         return False
-
 
 def do_share(bro, chains, fans_id, userId):
     try:
@@ -262,21 +190,6 @@ def do_share(bro, chains, fans_id, userId):
     except Exception as e3:
         logging.error(e3)
 
-
-def init_db(db_name):
-    config = {
-        'host': '123.56.224.232',
-        'port': 3306,
-        'user': 'bilibili',
-        'passwd': 'bili22bili',
-        'charset': 'utf8',
-        'cursorclass': pymysql.cursors.DictCursor
-    }
-    db = mysql_operate.MysqldbHelper(config)
-    db.selectDataBase(db_name)
-    return db
-
-
 def get_fans_list():
     try:
         db = init_db('bilibili')
@@ -290,7 +203,6 @@ def get_fans_list():
         error_to_log("get_fans_list", "获取用户列表出错：" + repr(type(e1)), "p0")
         logging.error(e1)
 
-
 def start_forward():
     try:
         begin_time = time.time()
@@ -300,7 +212,7 @@ def start_forward():
         db = init_db('bilibili')
         userId = '433441242'
         # userId = '385649497'
-        cookie_path = './' + userId + '.txt'
+        cookie_path = './cookie/' + userId + '.txt'
         homeUrl = 'https://www.bilibili.com/'
         # 初始化
         bro, chains = init_webdriver()
@@ -329,8 +241,7 @@ def start_forward():
 
         try:
             logging.info('开始转发')
-            url1 = 'https://sctapi.ftqq.com/SCT172323TZn2oLYosf0TJY80XSH7KN29R.send'
-            url2 = 'https://sctapi.ftqq.com/SCT63874Tus7GmUoMlz6b2iJNxrQ1gUws.send'
+            url1 = 'https://sctapi.ftqq.com/SCT172323T2wPuqkvImzZtZakj5slzlBZL.send'
             desp = '动态转发程序\r\n\r\n开始运行时间：' + start_time + '\r\n\r\n结束运行时间：' + finish_time + run_time_show + '\r\n\r\n扫描的用户数量：' + str(
                 list_len)
             data = {
@@ -339,45 +250,12 @@ def start_forward():
                 'short': '动态转发数据统计'
             }
             r = requests.post(url1, data)
-            r = requests.post(url2, data)
         except Exception as e2:
             error_to_log("send_start_forward", "筛选任务开始发送通知出错：" + repr(type(e2)), "无")
 
         bro.quit()
 
-
-def get_host_ip():
-    """
-    查询本机ip地址
-    :return: ip
-    """
-    try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(('8.8.8.8', 80))
-        ip = s.getsockname()[0]
-    finally:
-        s.close()
-
-    return ip
-
-
-def print_run_time(name, begin_time, end_time):
-    run_time = round(end_time - begin_time)
-    # 计算时分秒
-    hour = run_time // 3600
-    minute = (run_time - 3600 * hour) // 60
-    second = run_time - 3600 * hour - 60 * minute
-    run_time_show = f'\r\n\r\n{name} 总共运行时间：{hour}小时{minute}分钟{second}秒'
-    return run_time_show
-
-
 if __name__ == '__main__':
-    # db = init_db('bilibili')
-    # params = {}
-    # params['update_time'] = str(datetime.now())
-    # cond_dict = {}
-    # cond_dict['fans_id'] = '8275236'
-    # db.update('t_fans', params, cond_dict)
 
     start_forward()
     logging.info("start main task")

@@ -1,79 +1,19 @@
-import random
-from datetime import datetime
-from selenium import webdriver
-from lxml import etree
-from time import sleep
-# 实现无可视化界面
-from selenium.webdriver.chrome.options import Options
-# 实现规避检测
-from selenium.webdriver import ChromeOptions
-import json
-import socket
-
-import pymysql
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver import ActionChains
-from selenium.webdriver.common.by import By
-
-import mysql_operate
-import requests
-from cron_lite import cron_task, start_all
-import time
-import schedule
-# 引入 datetime 模块
 import datetime
-
-
-def init_webdriver():
-    # # 实现无可视化界面的操作
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-gpu')
-
-    # 实现规避检测的变量：option
-    option = ChromeOptions()
-    option.add_experimental_option('excludeSwitches', ['enable-automation'])
-
-    # 实现让selenium规避被检测到的风险
-
-    s = Service(r"./chromedriver.exe")
-    bro = webdriver.Chrome(service=s, chrome_options=chrome_options, options=option)
-    # bro = webdriver.Chrome(service=s)
-    chains = ActionChains(bro)
-    return bro, chains
-
-
-def login_by_cookie(bro, cookie_path):
-    try:
-        with open(cookie_path, 'r', encoding='utf-8') as f:
-            cookies = f.readlines()
-        for cookie in cookies:
-            cookie = cookie.replace(r'\n', '')
-            cookie_li = json.loads(cookie)
-            sleep(1)
-            for cookie in cookie_li:
-                bro.add_cookie(cookie)
-            bro.refresh()
-        print('使用cookie自动登录成功！')
-        sleep(1)
-    except Exception as e:
-        error_to_log("login_by_cookie", "cookie登录失败", "p0")
-
-
-def is_xpath_exist(bro, xpath):
-    try:
-        bro.find_element(By.XPATH, xpath)
-        return True
-    except:
-        return False
+import time
+from datetime import datetime
+from time import sleep
+import schedule
+from selenium.webdriver.common.by import By
+from utils.customer_logger import error_to_log
+from utils.mysql_operate import init_db
+from utils.selenium_util import init_webdriver, is_xpath_exist
+from utils.time_util import deal_time
 
 
 def is_time_ok(time):
     # if "小时" in time or "分钟" in time or "刚刚" in time or "昨天" in time:
     #     return True
     return True;
-
 
 def check_user(bro, chains, fans_id):
     try:
@@ -115,24 +55,6 @@ def check_user(bro, chains, fans_id):
         sleep(2)
     except Exception as e:
         error_to_log("check_user", "每小时扫描用户程序出错：" + repr(type(e)), "p3")
-    # finally:
-    #     # db.close()
-    #     bro.quit()
-
-
-def init_db(db_name):
-    config = {
-        'host': '123.56.224.232',
-        'port': 3306,
-        'user': 'bilibili',
-        'passwd': 'bilibili',
-        'charset': 'utf8',
-        'cursorclass': pymysql.cursors.DictCursor
-    }
-    db = mysql_operate.MysqldbHelper(config)
-    db.selectDataBase(db_name)
-    return db
-
 
 def select_user_by_hour():
     try:
@@ -157,41 +79,6 @@ def select_user_by_hour():
         bro.quit()
         db.close()
         print('结束筛选，当前时间：' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())))
-
-
-def send_search_start():
-    try:
-        print('开始筛选')
-        url1 = 'https://sctapi.ftqq.com/SCT172323TZn2oLYosf0TJY80XSH7KN29R.send'
-        url2 = 'https://sctapi.ftqq.com/SCT63874Tus7GmUoMlz6b2iJNxrQ1gUws.send'
-        data = {
-            'title': 'Start 筛选用户 定时任务开始',
-            'desp': 'Start 筛选用户 定时任务开始',
-            'short': 'Start 筛选用户 定时任务开始'
-        }
-        r = requests.post(url1, data)
-        r = requests.post(url2, data)
-    except Exception as e:
-        error_to_log("send_search_start", "筛选任务开始发送通知出错：" + repr(type(e)), "无")
-
-
-def getYesterday():
-    today = datetime.date.today()
-    oneday = datetime.timedelta(days=1)
-    yesterday = today - oneday
-    return yesterday
-
-
-def deal_time(sj):
-    if "小时" in sj or "分钟" in sj or "刚刚" in sj:
-        return time.strftime("%Y-%m-%d", time.localtime(time.time()))
-
-    if len(sj) == 5:
-        return '2023-' + sj
-
-    return sj;
-
-
 def search_user():
     try:
         db = init_db('bilibili')
@@ -225,46 +112,12 @@ def search_user():
     # finally:
     #     db.close()
 
-
-def error_to_log(function_name, content, note):
-    try:
-        ip = get_host_ip()
-        db = init_db('bilibili')
-        # 保存记录
-        params = {}
-        params['function_name'] = function_name
-        params['content'] = str(content).replace('"', '').replace("'", '')[:2500]
-        params['note'] = note
-        params['ip'] = ip
-        params['insert_time'] = str(datetime.datetime.now())
-        db.insert('t_log', params)
-    except Exception as e:
-        print(e)
-    finally:
-        print("日志完成入库")
-
-
-def get_host_ip():
-    """
-    查询本机ip地址
-    :return: ip
-    """
-    try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(('8.8.8.8', 80))
-        ip = s.getsockname()[0]
-    finally:
-        s.close()
-
-    return ip
-
-
 if __name__ == '__main__':
     print("start search users task")
+    select_user_by_hour()
     schedule.every().day.at("07:30").do(search_user)
     schedule.every().day.at("19:30").do(search_user)
     schedule.every().hour.do(select_user_by_hour)
-
     while True:
         try:
             schedule.run_pending()
