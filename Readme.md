@@ -12,20 +12,20 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 
 本程序内置一个扫描脚本，该脚本去挖掘那些经常转发抽奖动态的伙伴，然后每天定时去扫描他们今天的动态信息，随后再利用一个抽奖动态识别与转发脚本来进行活动参与，转发后的效果是这样的：
 
-<img src="img/Readme.assets/image-20230407114451309.png" alt="image-20230407114451309" style="zoom:67%;" />
+<img src="img/Readme.assets/image-20230518202338234.png" alt="image-20230518202338234" style="zoom:67%;" />
 
 ### 环境
 Python： 3.7 版本以上
 
 Chrome与chromedriver.exe的版本关系，参考这里：[chromedriver下载地址](http://chromedriver.storage.googleapis.com/index.html)
 
-### 使用
+### Window系统使用
 
 修改数据库配置：
 
 全局搜索`def init_db`，然后修改数据库配置：
 
-<img src="img/Readme.assets/image-20230408111029045.png" alt="image-20230408111029045" style="zoom:50%;" />
+<img src="img/Readme.assets/image-20230518202525593.png" alt="image-20230518202525593" style="zoom:67%;" />
 
 clone本项目，然后启动start_get_user.bat和start_share.bat两个脚本
 
@@ -62,6 +62,10 @@ pause
 ![image-20230410164206780](img/Readme.assets/xxx.png)
 
 ## docker启动方式
+
+在selenium_util.py中替换你的ip
+
+<img src="img/Readme.assets/image-20230518202627725.png" alt="image-20230518202627725" style="zoom: 50%;" />
 
 先创建selenium环境
 
