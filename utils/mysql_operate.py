@@ -2,10 +2,10 @@ import pymysql
 
 def init_db(db_name):
     config = {
-        'host': '',
+        'host': 'x.x.x.x',
         'port': 3306,
-        'user': '',
-        'passwd': '',
+        'user': 'bilibili',
+        'passwd': 'xxxx',
         'charset': 'utf8',
         'cursorclass': pymysql.cursors.DictCursor
     }

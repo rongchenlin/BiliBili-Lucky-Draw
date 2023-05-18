@@ -2,11 +2,12 @@ import datetime
 import time
 from datetime import datetime
 from time import sleep
-import schedule
+
 from selenium.webdriver.common.by import By
+
 from utils.customer_logger import error_to_log
 from utils.mysql_operate import init_db
-from utils.selenium_util import init_webdriver, is_xpath_exist
+from utils.selenium_util import is_xpath_exist, init_webdriver2
 from utils.time_util import deal_time
 
 
@@ -65,7 +66,7 @@ def select_user_by_hour():
         data = db.select_db(sql)  # 用mysql_operate文件中的db的select_db方法进行查询
         max_id = int(data[0]['user_id'])
         # 初始化
-        bro, chains = init_webdriver()
+        bro, chains = init_webdriver2()
         start_id = max_id
 
         # 执行转发操作
@@ -81,6 +82,7 @@ def select_user_by_hour():
         print('结束筛选，当前时间：' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())))
 def search_user():
     try:
+        print('开始搜索用户，当前时间：' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())))
         db = init_db('bilibili')
         dayAgo = (datetime.datetime.now() - datetime.timedelta(days=100))
         # 转换为其他字符串格式
@@ -112,16 +114,16 @@ def search_user():
     # finally:
     #     db.close()
 
-if __name__ == '__main__':
-    print("start search users task")
-    select_user_by_hour()
-    schedule.every().day.at("07:30").do(search_user)
-    schedule.every().day.at("19:30").do(search_user)
-    schedule.every().hour.do(select_user_by_hour)
-    while True:
-        try:
-            schedule.run_pending()
-            time.sleep(1)
-        except Exception as e:
-            time.sleep(1)
-            print(e)
+# if __name__ == '__main__':
+#     print("start search users task")
+#     select_user_by_hour()
+#     schedule.every().day.at("07:30").do(search_user)
+#     schedule.every().day.at("19:30").do(search_user)
+#     schedule.every().hour.do(select_user_by_hour)
+#     while True:
+#         try:
+#             schedule.run_pending()
+#             time.sleep(1)
+#         except Exception as e:
+#             time.sleep(1)
+#             print(e)

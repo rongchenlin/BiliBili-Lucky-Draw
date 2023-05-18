@@ -1,6 +1,8 @@
 import json
 from time import sleep
-from utils.selenium_util import init_webdriver
+
+from utils.selenium_util import init_webdriver4
+
 
 def login_by_cookie(bro, cookie_path):
     try:
@@ -22,7 +24,7 @@ def login_by_cookie(bro, cookie_path):
 if __name__ == '__main__':
     homeUrl = 'https://www.bilibili.com/'
     # 初始化
-    bro, chains = init_webdriver()
+    bro, chains = init_webdriver4()
     bro.get(homeUrl)
     # 登录
     userId = '433441242'

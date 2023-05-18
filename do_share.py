@@ -1,47 +1,22 @@
-import random
-from datetime import datetime
-from selenium import webdriver
-from lxml import etree
-from time import sleep
-# 实现无可视化界面
-from selenium.webdriver.chrome.options import Options
-# 实现规避检测
-from selenium.webdriver import ChromeOptions
 import json
-import time
-import schedule
-import requests
-import socket
-import pymysql
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver import ActionChains
-from selenium.webdriver.common.by import By
 import logging
-from utils import mysql_operate
-import json
+import socket
+import threading
+# 实现无可视化界面
+# 实现规避检测
+import time
+from datetime import datetime
+from time import sleep
+
+import requests
+import schedule
+from selenium.webdriver.common.by import By
+
+from get_user import select_user_by_hour, search_user
+from utils.mysql_operate import init_db
+from utils.selenium_util import init_webdriver
 
 logging.basicConfig(level=logging.INFO)
-
-
-def init_webdriver():
-    # # 实现无可视化界面的操作
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-gpu')
-
-    # 实现规避检测的变量：option
-    option = ChromeOptions()
-    option.add_experimental_option('excludeSwitches', ['enable-automation'])
-
-    # 实现让selenium规避被检测到的风险
-
-    s = Service(r"./chromedriver.exe")
-    bro = webdriver.Chrome(service=s, chrome_options=chrome_options, options=option)
-    # bro = webdriver.Chrome(service=s)
-    chains = ActionChains(bro)
-    return bro, chains
-
 
 def error_to_log_more(function_name, content, note, retry_dyn_id):
     try:
@@ -263,20 +238,6 @@ def do_share(bro, chains, fans_id, userId):
         logging.error(e3)
 
 
-def init_db(db_name):
-    config = {
-        'host': '123.56.224.232',
-        'port': 3306,
-        'user': 'bilibili',
-        'passwd': 'bilibili',
-        'charset': 'utf8',
-        'cursorclass': pymysql.cursors.DictCursor
-    }
-    db = mysql_operate.MysqldbHelper(config)
-    db.selectDataBase(db_name)
-    return db
-
-
 def get_fans_list():
     try:
         db = init_db('bilibili')
@@ -294,13 +255,14 @@ def get_fans_list():
 def start_forward():
     try:
         begin_time = time.time()
+        print('开始转发，当前时间：' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())))
         start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))
         logging.info(start_time)
         # 初始化打开数据库连接
         db = init_db('bilibili')
         userId = '433441242'
         # userId = '385649497'
-        cookie_path = './' + userId + '.txt'
+        cookie_path = './cookie/' + userId + '.txt'
         homeUrl = 'https://www.bilibili.com/'
         # 初始化
         bro, chains = init_webdriver()
@@ -372,16 +334,11 @@ def print_run_time(name, begin_time, end_time):
 
 
 if __name__ == '__main__':
-    # db = init_db('bilibili')
-    # params = {}
-    # params['update_time'] = str(datetime.now())
-    # cond_dict = {}
-    # cond_dict['fans_id'] = '8275236'
-    # db.update('t_fans', params, cond_dict)
 
-    start_forward()
     logging.info("start main task")
-    schedule.every().day.at("10:35").do(start_forward)
+    schedule.every().day.at("11:10").do(search_user)
+    schedule.every().day.at("11:13").do(start_forward)
+    schedule.every().hour.do(select_user_by_hour)
     while True:
         try:
             schedule.run_pending()

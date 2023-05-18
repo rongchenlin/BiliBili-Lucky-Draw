@@ -1,27 +1,67 @@
-
 from selenium import webdriver
 from selenium.webdriver import ActionChains
-# 实现规避检测
-from selenium.webdriver import ChromeOptions
-# 实现无可视化界面
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
+
 def init_webdriver():
-    # # 实现无可视化界面的操作
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-gpu')
-    # 实现规避检测的变量：option
-    option = ChromeOptions()
-    option.add_experimental_option('excludeSwitches', ['enable-automation'])
-    # 实现让selenium规避被检测到的风险
-    s = Service(r"./chromedriver.exe")
-    # bro = webdriver.Chrome(service=s, chrome_options=chrome_options, options=option)
-    bro = webdriver.Chrome(service=s)
-    chains = ActionChains(bro)
-    return bro, chains
+
+    chrome_options = webdriver.ChromeOptions()
+    # chrome_options.add_argument("--headless")  # 以无头模式运行Chrome
+    chrome_options.add_argument("--no-sandbox")  # 取消沙盒模式
+    chrome_options.add_argument('lang=zh_CN.UTF-8')
+    chrome_options.add_argument(
+        '--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36')  # 替换User-Agent
+    driver = webdriver.Remote(
+        command_executor='http://123.56.224.232:5555',
+        options=chrome_options
+    )
+    chains = ActionChains(driver)
+    return driver, chains
+
+def init_webdriver2():
+
+    chrome_options = webdriver.ChromeOptions()
+    # chrome_options.add_argument("--headless")  # 以无头模式运行Chrome
+    chrome_options.add_argument("--no-sandbox")  # 取消沙盒模式
+    chrome_options.add_argument('lang=zh_CN.UTF-8')
+    chrome_options.add_argument(
+        '--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36')  # 替换User-Agent
+    driver = webdriver.Remote(
+        command_executor='http://123.56.224.232:5555',
+        options=chrome_options
+    )
+    chains = ActionChains(driver)
+    return driver, chains
+
+def init_webdriver3():
+
+    chrome_options = webdriver.ChromeOptions()
+    # chrome_options.add_argument("--headless")  # 以无头模式运行Chrome
+    chrome_options.add_argument("--no-sandbox")  # 取消沙盒模式
+    chrome_options.add_argument('lang=zh_CN.UTF-8')
+    chrome_options.add_argument(
+        '--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36')  # 替换User-Agent
+    driver = webdriver.Remote(
+        command_executor='http://x.x.x.x:5555',
+        options=chrome_options
+    )
+    chains = ActionChains(driver)
+    return driver, chains
+
+def init_webdriver4():
+
+    chrome_options = webdriver.ChromeOptions()
+    # chrome_options.add_argument("--headless")  # 以无头模式运行Chrome
+    chrome_options.add_argument("--no-sandbox")  # 取消沙盒模式
+    chrome_options.add_argument('lang=zh_CN.UTF-8')
+    chrome_options.add_argument(
+        '--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36')  # 替换User-Agent
+    driver = webdriver.Remote(
+        command_executor='http://x.x.x.x:5555',
+        options=chrome_options
+    )
+    chains = ActionChains(driver)
+    return driver, chains
 
 def is_xpath_exist(bro, xpath):
     try:

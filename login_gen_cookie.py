@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 
 from selenium.webdriver.common.by import By
 
-from utils.selenium_util import init_webdriver, is_xpath_exist
+from utils.selenium_util import is_xpath_exist, init_webdriver3
 
 
 def login_manual(bro):
@@ -30,7 +30,7 @@ def login_manual(bro):
 if __name__ == '__main__':
     homeUrl = 'https://www.bilibili.com/'
     # 初始化
-    bro, chains = init_webdriver()
+    bro, chains = init_webdriver3()
     bro.get(homeUrl)
     # 登录
     login_manual(bro)
