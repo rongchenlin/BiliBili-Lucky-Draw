@@ -61,4 +61,23 @@ pause
 
 ![image-20230410164206780](img/Readme.assets/xxx.png)
 
+## docker启动方式
+
+先创建selenium环境
+
+```java
+docker run -d -p 5555:4444 -p 7900:7900 --shm-size="1g" -e SE_NODE_MAX_SESSIONS=5 -e SE_NODE_MAX_INSTANCES=5 selenium/standalone-chrome:latest
+```
+
+构建镜像
+
+```java
+docker build -t myimage .
+```
+
+运行镜像
+
+```java
+docker run myimage
+```
 
