@@ -11,7 +11,7 @@ RUN python -m venv myenv
 RUN . myenv/bin/activate
 
 # 安装项目依赖项
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com
 
 # 运行docker run命令
-CMD python do_share.py
+CMD python main.py

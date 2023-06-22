@@ -2,10 +2,10 @@ import json
 from datetime import datetime
 from time import sleep
 from urllib.parse import urlparse
-
 from selenium.webdriver.common.by import By
-
-from utils.selenium_util import is_xpath_exist, init_webdriver3
+import globals
+from utils.selenium_util import init_webdriver
+from utils.xpath_util import is_xpath_exist
 
 
 def login_manual(bro):
@@ -22,16 +22,15 @@ def login_manual(bro):
         print(e)
     result = urlparse(url)
     id = str(result[2])[1:]
-    cookie_path = './' + id + '.txt'
+    cookie_path = './cookie/' + id + '.txt'
     with open(cookie_path, 'w') as f:
         f.write(json_cookies)
     print('cookies保存成功！')
 
 if __name__ == '__main__':
-    homeUrl = 'https://www.bilibili.com/'
     # 初始化
-    bro, chains = init_webdriver3()
-    bro.get(homeUrl)
+    bro, chains = init_webdriver()
+    bro.get(globals.home_url)
     # 登录
     login_manual(bro)
     bro.quit()

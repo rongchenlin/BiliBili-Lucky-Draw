@@ -1,16 +1,25 @@
+import configparser
+
 import pymysql
 
-def init_db(db_name):
+from globals import host, port, user, passwd, charset, dbname
+
+
+def init_db():
+    """
+    初始化数据库连接
+    :return:
+    """
     config = {
-        'host': 'x.x.x.x',
-        'port': 3306,
-        'user': 'bilibili',
-        'passwd': 'xxxx',
-        'charset': 'utf8',
+        'host': host,
+        'port': port,
+        'user': user,
+        'passwd': passwd,
+        'charset': charset,
         'cursorclass': pymysql.cursors.DictCursor
     }
     db = MysqldbHelper(config)
-    db.selectDataBase(db_name)
+    db.selectDataBase(dbname)
     return db
 
 class MysqldbHelper():
