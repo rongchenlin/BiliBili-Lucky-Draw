@@ -84,6 +84,80 @@ docker build -t bilibili_dynamic_share .
 docker run bilibili_dynamic_share
 ```
 
+## 本地调试代码
+
+### 准备工作
+
+#### 下载驱动
+
+下载浏览器驱动chromedriver.exe，**注意：chromedriver.exe的版本关系需要选择与你当前Chrome版本最接近的**
+
+点击下面的连接进行下载：
+
+[Click me ：chromedriver下载地址](http://chromedriver.storage.googleapis.com/index.html)
+
+| 你的Chrome版本                                               | 你可以下载的chromedriver.exe版本                             |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![image-20230622170336001](img/Readme.assets/image-20230622170336001.png) | <img src="img/Readme.assets/image-20230622170400913.png" alt="image-20230622170400913" style="zoom: 80%;" /> |
+
+将下载后的chromedriver.exe放置到项目中，覆盖项目中原有的chromedriver.exe。
+
+#### 创建数据库
+
+在MySQL5.7版本以上数据库执行下面的脚本：`bilibili-dump.sql`
+
+#### 修改个人配置
+
+在`globals.py`文件中，修改数据库，服务器IP信息（这里可以不用设置）
+
+![image-20230622155928146](img/Readme.assets/image-20230622155928146.png)
+
+### 调试步骤
+
+打开下面这个目录代码： `\utils\selenium_util.py`
+
+可以看到里面有2个init_webdriver方法，注释掉第一段用于服务器部署的代码，选择第二段用于本地调试的init_webdriver方法。
+
+```python
+
+def init_webdriver():
+    """
+    初始化Selenium信息———— 此为服务器版本，用于部署使用
+    :return:
+    """
+    # 设置浏览器信息
+    chrome_options = webdriver.ChromeOptions()
+    # chrome_options.add_argument("--headless")  # 以无头模式运行Chrome
+    chrome_options.add_argument("--no-sandbox")  # 取消沙盒模式
+    chrome_options.add_argument('lang=zh_CN.UTF-8')
+    chrome_options.add_argument(
+        '--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
+        'Chrome/101.0.4951.64 Safari/537.36')  # 替换User-Agent
+    driver = webdriver.Remote(
+        command_executor=globals.selenium_url,
+        options=chrome_options
+    )
+    chains = ActionChains(driver)
+    return driver, chains
+
+
+# def init_webdriver():
+#     """
+#     作用和上面的相同，都是用于初始化Selenium
+#     此段代码用于在本地调试使用，注意：请根据Readme.md文档到指定位置下载与当前Chrome浏览器匹配的chromedriver.exe
+#     :return:
+#     """
+#     chrome_options = Options()
+#     option = ChromeOptions()
+#     option.add_experimental_option('excludeSwitches', ['enable-automation'])
+#     s = Service(r"../chromedriver.exe")
+#     bro = webdriver.Chrome(service=s, chrome_options=chrome_options, options=option)
+#     chains = ActionChains(bro)
+#     return bro, chains
+```
+
+完成本地环境切换，现在你可以自由进行代码调试。
+
 ## TODO
 
 - [x] 项目采用Docker部署
@@ -93,3 +167,7 @@ docker run bilibili_dynamic_share
 - [ ] 将数据库搭建的工作使用Docker部署
 - [ ] 过期动态的删除
 - [ ] 接入B站UP主每日总结的抽奖动态列表，自动完成对其转发
+
+---
+
+### 本程序仅用于学习，有问题欢迎大家提Issue，有时间我会帮忙解决，也请大佬有好的解决方案在Issue上分享哈:smile::smile::smile:
