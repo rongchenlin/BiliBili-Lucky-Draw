@@ -16,17 +16,6 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 
 <img src="img/Readme.assets/image-20230518202338234.png" alt="image-20230518202338234" style="zoom:67%;" />
 
-### 环境准备
-
-- MySQL 5.7 即以上的数据库
-  - 执行数据库脚本：`bilibili-dump.sql`：数据库和表结构
-
-### Docker部署
-
-`login_gen_cookie.py`：用于第一次使用生成cookie的，通过运行该文件，然后用自己的手机端Bilibili扫码登录，登录成功后将在本地生成cookie文件
-
-
-
 ## docker部署
 
 ### 1.准备工作【以后更新版本不需要这个步骤】
@@ -80,12 +69,6 @@ docker run bilibili_gen_cookie
 <img src="img/Readme.assets/image-20230622124901169.png" alt="image-20230622124901169" style="zoom:150%;" />
 
 <img src="img/Readme.assets/image-20230622124931448.png" alt="image-20230622124931448" style="zoom:200%;" />
-
-##### 2.1.5 停止容器
-
-```dockerfile
-
-```
 
 #### 2.2 启动转发动态脚本
 
