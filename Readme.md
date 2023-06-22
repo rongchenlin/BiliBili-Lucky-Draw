@@ -84,7 +84,7 @@ docker build -t bilibili_dynamic_share .
 docker run bilibili_dynamic_share
 ```
 
-### 3.TODO
+## TODO
 
 - [x] 项目采用Docker部署
 - [x] 扫描B站二维码登录B站，自动生成Cookie并保存到本地项目文件夹cookie中
