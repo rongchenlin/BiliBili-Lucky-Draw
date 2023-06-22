@@ -30,12 +30,12 @@ def login_by_cookie(bro, cookie_path):
         print('登录失败')
 
 
-if __name__ == '__main__':
-    # 初始化
-    bro, chains = init_webdriver()
-    bro.get(globals.home_url)
-    # 登录
-    cookie_path = '../cookie/' + globals.my_user_id + '.txt'
-    login_by_cookie(bro, cookie_path)
-    input()
-    bro.quit()
+# if __name__ == '__main__':
+#     # 初始化
+#     bro, chains = init_webdriver()
+#     bro.get(globals.home_url)
+#     # 登录
+#     cookie_path = '../cookie/' + globals.my_user_id + '.txt'
+#     login_by_cookie(bro, cookie_path)
+#     input()
+#     bro.quit()

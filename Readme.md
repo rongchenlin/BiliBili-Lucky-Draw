@@ -158,7 +158,23 @@ def init_webdriver():
 #     return bro, chains
 ```
 
-完成本地环境切换，现在你可以自由进行代码调试。
+#### 切换到虚拟环境
+
+代码中已经有一个虚拟环境myenv，可以直接，在Pycharm中按下 `Ctrl + Alt + S` 进入设置界面，然后按照下面的设置过程：
+
+![funtion2](img/Readme.assets/funtion2.gif)
+
+#### 登录生成Cookie
+
+先登录生成Cookie的原因是为了方便后面其他功能的调试，因为后面搜索、转发等功能都是在登录基础上做的。
+
+具体的生成Cookie方式，参考如下步骤：**<u>扫码登录、扫码登录、扫码登录</u>**
+
+![funtion](img/Readme.assets/funtion-16874267569092.gif)
+
+如下图可以看到，已经生成了Cookie：
+
+![image-20230622173906254](img/Readme.assets/image-20230622173906254.png)
 
 ## TODO
 
