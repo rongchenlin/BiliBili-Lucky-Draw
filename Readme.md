@@ -160,7 +160,7 @@ def init_webdriver():
 
 #### 切换到虚拟环境
 
-代码中已经有一个虚拟环境myenv，可以直接，在Pycharm中按下 `Ctrl + Alt + S` 进入设置界面，然后按照下面的设置过程：
+代码中已经有一个虚拟环境myenv.rar，将其解压到到项目，然后在Pycharm中按下 `Ctrl + Alt + S` 进入设置界面，然后按照下面的设置过程：
 
 ![funtion2](img/Readme.assets/funtion2.gif)
 
