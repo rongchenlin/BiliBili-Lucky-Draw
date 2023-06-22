@@ -2,13 +2,14 @@ from selenium import webdriver
 from selenium.webdriver import ActionChains
 import globals
 
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver import ChromeOptions
 
-def visit_url(bro):
-    return bro
 
 def init_webdriver():
     """
-    初始化Selenium信息
+    初始化Selenium信息———— 此为服务器版本，用于部署使用
     :return:
     """
     # 设置浏览器信息
@@ -25,3 +26,20 @@ def init_webdriver():
     )
     chains = ActionChains(driver)
     return driver, chains
+
+
+# def init_webdriver():
+#     """
+#     作用和上面的相同，都是用于初始化Selenium
+#     此段代码用于在本地调试使用，注意：请根据Readme.md文档到指定位置下载与当前Chrome浏览器匹配的chromedriver.exe
+#     :return:
+#     """
+#     chrome_options = Options()
+#     option = ChromeOptions()
+#     option.add_experimental_option('excludeSwitches', ['enable-automation'])
+#     s = Service(r"../chromedriver.exe")
+#     bro = webdriver.Chrome(service=s, chrome_options=chrome_options, options=option)
+#     chains = ActionChains(bro)
+#     return bro, chains
+
+
