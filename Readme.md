@@ -96,9 +96,11 @@ docker run bilibili_dynamic_share
 
 [Click me ：chromedriver下载地址](http://chromedriver.storage.googleapis.com/index.html)
 
+<u>例如：</u>
+
 | 你的Chrome版本                                               | 你可以下载的chromedriver.exe版本                             |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![image-20230622170336001](img/Readme.assets/image-20230622170336001.png) | <img src="img/Readme.assets/image-20230622170400913.png" alt="image-20230622170400913" style="zoom: 80%;" /> |
+| <img src="img/Readme.assets/image-20230622170336001.png" alt="image-20230622170336001" style="zoom:120%;" /> | <img src="img/Readme.assets/image-20230622170400913.png" alt="image-20230622170400913" style="zoom: 80%;" /> |
 
 将下载后的chromedriver.exe放置到项目中，覆盖项目中原有的chromedriver.exe。
 
