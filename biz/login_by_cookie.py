@@ -1,6 +1,8 @@
 import configparser
 import json
 from time import sleep
+
+import globals
 from utils.selenium_util import init_webdriver
 
 
@@ -29,16 +31,11 @@ def login_by_cookie(bro, cookie_path):
 
 
 if __name__ == '__main__':
-    # 读取配置信息
-    config = configparser.ConfigParser()
-    config.read('config.ini')
-    userId = config.get('user-info', 'userId')
-    homeUrl = config.get('base-info', 'homeUrl')
     # 初始化
     bro, chains = init_webdriver()
-    bro.get(homeUrl)
+    bro.get(globals.home_url)
     # 登录
-    cookie_path = './cookie/' + userId + '.txt'
+    cookie_path = '../cookie/' + globals.my_user_id + '.txt'
     login_by_cookie(bro, cookie_path)
     input()
     bro.quit()
