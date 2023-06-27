@@ -1,9 +1,22 @@
-import configparser
+import logging
+import os
+import time
 import json
 from time import sleep
-
 import globals
-from utils.selenium_util import init_webdriver
+
+
+def check_cookie_valid():
+    folder_path = './cookie'
+    file_name = globals.my_user_id + '.txt'
+    for i in range(globals.max_checks):
+        if os.path.exists(os.path.join(folder_path, file_name)):
+            logging.info('登录成功！')
+            return True
+        else:
+            logging.warn('未登录，或者Cookie失效，请重新登录, waiting...')
+            time.sleep(1)
+    return False;
 
 
 def login_by_cookie(bro, cookie_path):

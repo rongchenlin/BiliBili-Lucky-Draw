@@ -98,7 +98,7 @@ def get_max_userid():
     :return: 最大ID
     """
     db = init_db()
-    sql = "SELECT * FROM t_users_cnt order by insert_time desc "
+    sql = "SELECT * FROM t_users_cnt where draw_cnt != -100 order by insert_time desc "
     data = db.select_db(sql)
     max_id = int(data[0]['user_id'])
     return max_id
@@ -135,7 +135,7 @@ def select_user_by_hour():
             db = init_db()
             params = {}
             params['user_id'] = flag_id
-            params['draw_cnt'] = str(0)
+            params['draw_cnt'] = str(-100)
             params['last_time'] = str(datetime.datetime.now())
             params['last_draw_time'] = str(datetime.datetime.now())
             params['insert_time'] = str(datetime.datetime.now())

@@ -3,8 +3,9 @@ from datetime import datetime
 from time import sleep
 from urllib.parse import urlparse
 from selenium.webdriver.common.by import By
-import globals
-from utils.selenium_util import init_webdriver
+
+from globals import home_url
+from utils.selenium_util import init_webdriver, init_webdriver_for_gen_cookie
 from utils.xpath_util import is_xpath_exist
 
 
@@ -27,10 +28,11 @@ def login_manual(bro):
         f.write(json_cookies)
     print('cookies保存成功！')
 
+
 if __name__ == '__main__':
     # 初始化
-    bro, chains = init_webdriver()
-    bro.get(globals.home_url)
+    bro, chains = init_webdriver_for_gen_cookie()
+    bro.get(home_url)
     # 登录
     login_manual(bro)
     bro.quit()
