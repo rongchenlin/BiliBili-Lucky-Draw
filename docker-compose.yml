@@ -20,8 +20,8 @@ services:
   selenium:
     image: selenium/standalone-chrome:latest
     ports:
-      - 15555:4444
-      - 17900:7900
+      - 5555:4444
+      - 7900:7900
     shm_size: 1g
     environment:
       - SE_NODE_MAX_SESSIONS=5
@@ -37,7 +37,7 @@ services:
     restart: always
     depends_on:
       - selenium
-      - db
+#      - db
   # 筛选用户的服务
   search_user:
     build:
@@ -48,7 +48,7 @@ services:
     restart: always
     depends_on:
       - selenium
-      - db
+#      - db
   # 执行转发动态的服务
   dynamic_share:
     build:
@@ -59,7 +59,7 @@ services:
     restart: always
     depends_on:
       - selenium
-      - db
+#      - db
 
 
 

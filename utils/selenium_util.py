@@ -1,3 +1,5 @@
+import logging
+
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 import globals
@@ -37,6 +39,7 @@ def init_webdriver():
     初始化Selenium信息———— 此为服务器版本，用于部署使用
     :return:
     """
+    logging.info("my selenium ip is :" + globals.selenium_url)
     # 设置浏览器信息
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--headless")  # 以无头模式运行Chrome

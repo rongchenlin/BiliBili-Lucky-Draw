@@ -1,8 +1,10 @@
+import logging
+
 import configparser
 
 import pymysql
 
-from globals import host, port, user, passwd, charset, dbname
+from globals import db_host, port, user, passwd, charset, dbname
 
 
 def init_db():
@@ -11,13 +13,15 @@ def init_db():
     :return:
     """
     config = {
-        'host': host,
+        'host': db_host,
         'port': port,
         'user': user,
         'passwd': passwd,
         'charset': charset,
         'cursorclass': pymysql.cursors.DictCursor
     }
+    logging.info("db info :")
+    logging.info(config)
     db = MysqldbHelper(config)
     db.selectDataBase(dbname)
     return db

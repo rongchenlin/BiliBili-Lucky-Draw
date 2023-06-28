@@ -22,7 +22,7 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 
 在`.env`文件中，修改相关信息
 
-<img src="img/Readme.assets/image-20230627112945551.png" alt="image-20230627112945551" style="zoom: 67%;" />
+<img src="img/Readme.assets/image-20230628233743853.png" alt="image-20230628233743853" style="zoom: 50%;" />
 
 ### 编译、启动容器
 
