@@ -4,7 +4,7 @@ import time
 import traceback
 import schedule
 from biz.get_user import select_user_by_hour
-from biz.login_by_cookie import check_cookie_valid
+from biz.login_by_cookie import check_cookie_valid, delay_start
 from globals import max_checks, my_user_id, delay_time
 from utils.customer_logger import get_host_ip
 
@@ -12,13 +12,11 @@ logging.basicConfig(level=logging.INFO)
 
 
 if __name__ == '__main__':
-
+    delay_start(int(delay_time))
     login_valid = check_cookie_valid()
     if login_valid is False:
         logging.error("超时未登录，程序退出！")
-
-    logging.info("start hourly search user task")
-    time.sleep(int(delay_time))
+    logging.info("每小时筛选用户程序开始运行...")
     select_user_by_hour()
     schedule.every().hour.do(select_user_by_hour)
     while True:

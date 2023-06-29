@@ -4,7 +4,8 @@ from time import sleep
 from urllib.parse import urlparse
 from selenium.webdriver.common.by import By
 
-from globals import home_url
+from biz.login_by_cookie import delay_start
+from globals import home_url, delay_time
 from utils.selenium_util import init_webdriver, init_webdriver_for_gen_cookie
 from utils.xpath_util import is_xpath_exist
 
@@ -30,6 +31,7 @@ def login_manual(bro):
 
 
 if __name__ == '__main__':
+    delay_start(int(delay_time))
     # 初始化
     bro, chains = init_webdriver_for_gen_cookie()
     bro.get(home_url)

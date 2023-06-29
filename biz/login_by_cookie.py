@@ -6,6 +6,15 @@ from time import sleep
 import globals
 
 
+def delay_start(seconds):
+    while seconds > 0:
+        minutes_remaining = seconds // 60
+        seconds_remaining = seconds % 60
+        logging.info("程序将在 " + str(minutes_remaining) + "分钟 " + str(seconds_remaining) + " 秒后开始启动!")
+        time.sleep(1)
+        seconds -= 1
+
+
 def check_cookie_valid():
     folder_path = './cookie'
     file_name = globals.my_user_id + '.txt'
