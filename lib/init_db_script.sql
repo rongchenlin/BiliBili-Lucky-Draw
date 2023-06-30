@@ -97,7 +97,7 @@ CREATE TABLE `t_users_cnt` (
 
 -- Dump completed on 2023-04-08 11:06:09
 
-INSERT INTO bilibili.t_users_cnt (user_id, draw_cnt, last_time, last_draw_time, insert_time, update_time) VALUES ('8248488', 11, '2022-11-19', '2022-11-19', '2023-02-08 14:17:21', null)
+INSERT INTO bilibili.t_users_cnt (user_id, draw_cnt, last_time, last_draw_time, insert_time, update_time) VALUES ('8248488', 11, '2022-11-19', '2022-11-19', '2023-02-08 14:17:21', null);
 
 
 -- 预设一些数据
