@@ -14,7 +14,7 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 
 本程序内置一个扫描脚本，该脚本去挖掘那些经常转发抽奖动态的伙伴，然后每天定时去扫描他们今天的动态信息，随后再利用一个抽奖动态识别与转发脚本来进行活动参与，转发后的效果是这样的：
 
-<img src="img/Readme.assets/image-20230518202338234.png" alt="image-20230518202338234" style="zoom: 50%;" />
+![image-20230630234051479](img/Readme.assets/image-20230630234051479.png)
 
 ## docker部署
 
@@ -25,7 +25,7 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 1. 你的B站账号 
 2. **<u>IP需要真实IP或者在局域网的IP，不能使用127.0.0.0</u>**
 
-<img src="img/Readme.assets/image-20230630224722830-16881367056261.png" alt="image-20230630224722830" style="zoom: 50%;" />
+<img src="img/Readme.assets/image-20230630224722830-16881367056261.png" alt="image-20230630224722830"  />
 
 ### 编译、启动容器
 
@@ -49,7 +49,7 @@ docker-compose up -d
 
 登录成功后会在当前cookie文件夹下生成你的cookie文件：`your_bilibili_id.txt`
 
-<img src="img/Readme.assets/funtion-16874096887972.gif" alt="funtion" style="zoom: 25%;" />
+<img src="img/Readme.assets/funtion-16874096887972.gif" alt="funtion" style="zoom: 80%;" />
 
 ## 本地调试代码
 
