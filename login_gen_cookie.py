@@ -1,4 +1,5 @@
 import json
+import logging
 from datetime import datetime
 from time import sleep
 from urllib.parse import urlparse
@@ -8,7 +9,7 @@ from biz.login_by_cookie import delay_start
 from globals import home_url, delay_time
 from utils.selenium_util import init_webdriver, init_webdriver_for_gen_cookie
 from utils.xpath_util import is_xpath_exist
-
+logging.basicConfig(level=logging.INFO)
 
 def login_manual(bro):
     while is_xpath_exist(bro, '//*[@id="i_cecream"]/div[2]/div[1]/div[1]/ul[2]/li[1]/li/div') is True:
