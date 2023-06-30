@@ -20,9 +20,12 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 
 ### 修改个人配置
 
-在`.env`文件中，修改相关信息
+在`.env`文件中，修改相关信息：
 
-<img src="img/Readme.assets/image-20230628233743853.png" alt="image-20230628233743853" style="zoom: 50%;" />
+1. 你的B站账号 
+2. **<u>IP需要真实IP或者在局域网的IP，不能使用127.0.0.0</u>**
+
+<img src="img/Readme.assets/image-20230630224722830.png" alt="image-20230630224722830" style="zoom:67%;" />
 
 ### 编译、启动容器
 
