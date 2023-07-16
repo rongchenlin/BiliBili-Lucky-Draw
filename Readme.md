@@ -53,7 +53,7 @@ docker-compose up -d
 
 ## 本地调试代码
 
-[点击这里查看本地调试使用文档](other.md#debug)
+[点击这里查看本地调试使用文档](Other.md#debug)
 
 ## TODO && Updated
 
