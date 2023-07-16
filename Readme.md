@@ -45,7 +45,7 @@ docker-compose up -d
 
 ### 初次使用，登录生成Cookie
 
-运行容器后，访问 [your_ip:5555]()，扫码登录,自动生成Cookie
+运行容器后，访问 [your_ip:5555]()，默认密码:secret:：`secret`，扫码登录,自动生成Cookie
 
 登录成功后会在当前cookie文件夹下生成你的cookie文件：`your_bilibili_id.txt`
 
