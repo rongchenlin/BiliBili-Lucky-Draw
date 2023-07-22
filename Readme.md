@@ -20,7 +20,7 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 
 ### 使用效果
 
-https://user-images.githubusercontent.com/83388493/255308747-39d529a0-f0dc-414b-98c5-e19a3bac2840.mp4
+https://user-images.githubusercontent.com/83388493/255314887-6ab28c29-a3c6-45ba-9926-c37b50ad506a.mp4
 
 ### 下载位置
 
