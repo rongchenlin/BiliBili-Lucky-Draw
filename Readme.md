@@ -1,6 +1,6 @@
 # B站抽奖转发——薅羊毛脚本
 
-## 简介
+## Ⅰ.简介
 
 常刷B站的伙伴们，是不是每次看到Up主的抽奖活动都行动不已，毕竟`抽奖总得试试吗，万一中奖了呢`，然后一波关注+转发之后，迎来的每每都是`从不缺席，从不中奖`。
 
@@ -10,13 +10,13 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 
 **声明**: <u>**此脚本仅用于学习和测试，作者本人并不对其负责，请于运行测试完成后自行删除，请勿滥用！**</u>
 
-## 效果
+## Ⅱ.效果
 
 本程序内置一个扫描脚本，该脚本去挖掘那些经常转发抽奖动态的伙伴，然后每天定时去扫描他们今天的动态信息，随后再利用一个抽奖动态识别与转发脚本来进行活动参与，转发后的效果是这样的：
 
 ![image-20230630234051479](img/Readme.assets/image-20230630234051479.png)
 
-## Windows版本桌面程序exe
+## Ⅲ.Windows版本桌面程序exe
 
 ### 使用效果
 
@@ -27,7 +27,7 @@ https://user-images.githubusercontent.com/83388493/255308747-39d529a0-f0dc-414b-
 - 项目地址：[BiliBili-Lucky-Draw-GUI](https://github.com/rongchenlin/BiliBili-Lucky-Draw-GUI)
 - 程序包下载：[BiliBili-Lucky-Draw-GUI-v1.0.0](https://github.com/rongchenlin/BiliBili-Lucky-Draw/releases/tag/BiliBili-Lucky-Draw-GUI-v1.0.0)
 
-## docker部署
+## Ⅳ.docker部署
 
 ### 修改个人配置
 
@@ -62,11 +62,11 @@ docker-compose up -d
 
 <img src="img/Readme.assets/funtion-16874096887972.gif" alt="funtion" style="zoom: 80%;" />
 
-## 本地调试代码
+## Ⅴ.本地调试代码
 
 [点击这里查看本地调试使用文档](Other.md#debug)
 
-## TODO && Updated
+## Ⅵ.TODO && Updated
 
 - [x] 项目采用Docker部署
 - [x] 扫描B站二维码登录B站，自动生成Cookie并保存到本地项目文件夹cookie中
@@ -80,6 +80,11 @@ docker-compose up -d
 
 ---
 
-## Thanks
+## Ⅶ.Thanks
 
-**本程序仅用于学习，有问题欢迎大家提Issue，有时间我会帮忙解决，也请大佬有好的解决方案在Issue上分享哈:smile::smile::smile:**
+**本程序仅用于学习**
+
+**有问题欢迎大家提Issue，有时间我会帮忙解决，也请大佬有好的解决方案在Issue上分享哈:smile::smile::smile:**
+
+**如果大家觉得这个项目有点意思，期待给个Star:star:，你的Star:star:是作者更新最大的动力鸭!**
+
