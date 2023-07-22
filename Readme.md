@@ -16,6 +16,17 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 
 ![image-20230630234051479](img/Readme.assets/image-20230630234051479.png)
 
+## Windows版本桌面程序exe
+
+### 使用效果
+
+https://user-images.githubusercontent.com/83388493/255308747-39d529a0-f0dc-414b-98c5-e19a3bac2840.mp4
+
+### 下载位置
+
+- 项目地址：[BiliBili-Lucky-Draw-GUI](https://github.com/rongchenlin/BiliBili-Lucky-Draw-GUI)
+- 程序包下载：[BiliBili-Lucky-Draw-GUI-v1.0.0](https://github.com/rongchenlin/BiliBili-Lucky-Draw/releases/tag/BiliBili-Lucky-Draw-GUI-v1.0.0)
+
 ## docker部署
 
 ### 修改个人配置
@@ -63,6 +74,7 @@ docker-compose up -d
 - [ ] 每日任务执行情况推送（之前用的方糖酱，后续将重新加入）
 - [x] 将数据库搭建的工作使用Docker部署
 - [x] Docker服务编排，一键部署
+- [x] 开发桌面程序(目前只是简单版本)
 - [ ] 过期动态的删除
 - [ ] 接入B站UP主每日总结的抽奖动态列表，自动完成对其转发
 
