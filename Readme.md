@@ -53,8 +53,7 @@ https://user-images.githubusercontent.com/83388493/255314887-6ab28c29-a3c6-45ba-
 
 ### 下载位置
 
-- 项目地址：[BiliBili-Lucky-Draw-GUI](https://github.com/rongchenlin/BiliBili-Lucky-Draw-GUI)
-- 程序包下载：[BiliBili-Lucky-Draw-GUI-v1.0.0](https://github.com/rongchenlin/BiliBili-Lucky-Draw/releases/tag/BiliBili-Lucky-Draw-GUI-v1.0.0)
+- 程序包下载地址：[BiliBili-Lucky-Draw-GUI-v1.0.0](https://github.com/rongchenlin/BiliBili-Lucky-Draw/releases/tag/BiliBili-Lucky-Draw-GUI-v1.0.0)
 
 ## Ⅳ.docker部署
 
