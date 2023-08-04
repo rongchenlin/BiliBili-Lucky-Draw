@@ -31,7 +31,7 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 
 ![image-20230630234051479](img/Readme.assets/image-20230630234051479.png)
 
-## Ⅲ.Windows版本桌面程序exe
+## Ⅲ.使用方式一：Windows桌面程序
 
 ### 使用效果
 
@@ -53,7 +53,7 @@ https://user-images.githubusercontent.com/83388493/255314887-6ab28c29-a3c6-45ba-
 
 - 程序包下载地址：[BiliBili-Lucky-Draw-GUI-v1.0.0](https://github.com/rongchenlin/BiliBili-Lucky-Draw/releases/tag/BiliBili-Lucky-Draw-GUI-v1.0.0)
 
-## Ⅳ.docker部署
+## Ⅳ.使用方式二：部署在docker容器
 
 ### 修改个人配置
 
