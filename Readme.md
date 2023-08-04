@@ -1,4 +1,20 @@
-# B站抽奖转发——薅羊毛脚本
+<div align="center">
+    <img align="center" src="https://github.com/rongchenlin/BiliBili-Lucky-Draw/blob/master/img/Readme.assets/logo.jpg" alt="logo" width="600">
+    <p align="center">· BiliBili-Lucky-Draw ·</p>
+    <p align="center">
+        <img src="https://img.shields.io/github/stars/rongchenlin/BiliBili-Lucky-Draw?color=red&style=flat-square">
+        <a href="mailto:2702739215@qq.com">
+            <img src="https://img.shields.io/static/v1?label=contact%20me&message=email&color=green&style=flat-square">
+        </a>
+        <a href="https://github.com/rongchenlin/BiliBili-Lucky-Draw/blob/master/LICENSE" target="_blank">
+            <img src="https://img.shields.io/static/v1?label=license&message=GPL-3.0&color=orange&style=flat-square">
+        </a>
+        <a href="https://github.com/rongchenlin/BiliBili-Lucky-Draw/issues/new/choose" target="_blank">
+            <img src="https://img.shields.io/static/v1?label=feedback&message=issues&color=pink&style=flat-square">
+        </a>
+    </p>
+    </br>
+</div>
 
 ## Ⅰ.简介
 
