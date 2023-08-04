@@ -1,5 +1,5 @@
 <div align="center">
-    <img align="center" src="https://github.com/rongchenlin/BiliBili-Lucky-Draw/blob/master/img/Readme.assets/logo.jpg" alt="logo" width="600">
+    <img align="center" src="https://github.com/rongchenlin/BiliBili-Lucky-Draw/blob/master/img/Readme.assets/logo.png" alt="logo" width="600">
     <p align="center">· BiliBili-Lucky-Draw ·</p>
     <p align="center">
         <img src="https://img.shields.io/github/stars/rongchenlin/BiliBili-Lucky-Draw?color=red&style=flat-square">
@@ -15,6 +15,7 @@
     </p>
     </br>
 </div>
+
 
 ## Ⅰ.简介
 
