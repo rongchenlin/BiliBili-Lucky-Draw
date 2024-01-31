@@ -20,6 +20,7 @@ def init_db():
         'charset': charset,
         'cursorclass': pymysql.cursors.DictCursor
     }
+    logging.warning("ip :" + str(db_host))
     logging.info("db info :")
     logging.info(config)
     db = MysqldbHelper(config)
