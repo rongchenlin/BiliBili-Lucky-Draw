@@ -32,7 +32,6 @@ services:
 
   # 执行转发动态的服务
   dynamic_share:
-    container_name: bili-project
     build:
       context: .
       dockerfile: Dockerfile
