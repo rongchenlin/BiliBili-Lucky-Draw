@@ -66,7 +66,7 @@ def online_driver():
     chrome_options.add_argument("--disable-gpu")  # 取消GPU
     chrome_options.add_argument("--disable-software-rasterizer")
     # chrome_options.add_argument("blink-settings=imagesEnabled=false")  # 配置不加载图片
-    # chrome_options.add_argument("--disable-extensions")  # 禁用插件加载
+    chrome_options.add_argument("--disable-extensions")  # 禁用插件加载
     chrome_options.add_argument('lang=zh_CN.UTF-8')
     chrome_options.add_argument(
         '--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
