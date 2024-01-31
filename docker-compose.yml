@@ -18,7 +18,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
 
 
-  selenium:
+  bili-selenium:
     image: selenium/standalone-chrome:latest
     container_name: bili-selenium
     ports:
@@ -40,8 +40,8 @@ services:
       - .:/app
     restart: always
     depends_on:
-      - selenium
-      - db
+      - bili-selenium
+      - bili-db
 
 
 
