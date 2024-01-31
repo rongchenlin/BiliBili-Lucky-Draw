@@ -7,6 +7,7 @@ from service.search_draw_dynamic_service.SearchDynamicByUps import SearchDynamic
 from service.share_service.multi_users_share import MultiUsersShareService
 from service.share_service.share_from_biliLink import BiliLinkShare
 from utils import globals
+from utils.ip_util import get_host_ip
 from utils.webdriver_util import init_webdriver
 
 if __name__ == '__main__':
