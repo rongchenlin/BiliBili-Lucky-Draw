@@ -1,0 +1,47 @@
+
+
+version: '3'
+services:
+  bili-db:
+    image: mysql:5.7
+    container_name: bili-db
+    environment:
+      MYSQL_ROOT_PASSWORD: luckybililuckybili
+      MYSQL_DATABASE: luckybili
+      MYSQL_USER: luckybili
+      MYSQL_PASSWORD: luckybililuckybili
+    ports:
+      - "3206:3306"
+    volumes:
+      - ./lib/init_db_script.sql:/docker-entrypoint-initdb.d/init_db_script.sql  # 挂载init_db_script.sql文件到容器内的初始化目录
+      - ./db_data:/var/lib/mysql  # 持久化MySQL数据
+    command: --default-authentication-plugin=mysql_native_password
+
+
+  selenium:
+    image: selenium/standalone-chrome:latest
+    container_name: bili-selenium
+    ports:
+      - 5555:4444
+      - 7900:7900
+    shm_size: 1g
+    environment:
+      - SE_NODE_MAX_SESSIONS=5
+      - SE_NODE_MAX_INSTANCES=5
+      - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+
+  # 执行转发动态的服务
+  dynamic_share:
+    container_name: bili-project
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    restart: always
+    depends_on:
+      - selenium
+      - db
+
+
+

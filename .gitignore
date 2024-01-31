@@ -1,0 +1,9 @@
+.env
+pyvenv
+.idea
+Log
+
+__pycache__
+*/__pycache__
+/service/*/__pycache__
+/*/__pycache__
