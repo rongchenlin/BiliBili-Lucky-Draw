@@ -31,9 +31,10 @@ DRIVER_VERSION = os.getenv("DRIVER_VERSION")
 
 
 def getHost():
-    comments = get_infos("DB_HOST")
-    if len(comments) != 0:
-        return comments
+    host = get_infos("DB_HOST")
+    print(host)
+    if len(host) != 0:
+        return host
     return get_host_ip()
 
 
@@ -72,5 +73,5 @@ db_host = getHost()
 selenium_url = "http://" + getHost() + ":5555"
 
 if __name__ == '__main__':
-    print(share_content)
-    print(comment_content)
+    print(db_host)
+    print(selenium_url)
