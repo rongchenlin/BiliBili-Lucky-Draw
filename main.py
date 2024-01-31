@@ -12,8 +12,8 @@ from utils.webdriver_util import init_webdriver
 if __name__ == '__main__':
     # 多用户转发
     if globals.do_type == 'multi':
-        # SearchDynamicByUps(globals.my_user_id).init_search()
-        MultiUsersShareService().do_multi_uses_share()
+        SearchDynamicByUps(globals.my_user_id).init_search()
+        # MultiUsersShareService().do_multi_uses_share()
     # 手动登录
     if globals.do_type == 'login_manual':
         bro, chians = init_webdriver()
