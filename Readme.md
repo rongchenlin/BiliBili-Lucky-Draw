@@ -16,7 +16,6 @@
     </br>
 </div>
 
-
 ## Ⅰ.简介
 
 常刷B站的伙伴们，是不是每次看到Up主的抽奖活动都行动不已，毕竟`抽奖总得试试吗，万一中奖了呢`，然后一波关注+转发之后，迎来的每每都是`从不缺席，从不中奖`。
@@ -31,40 +30,25 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 
 ![image-20230630234051479](img/Readme.assets/image-20230630234051479.png)
 
-## Ⅲ.使用方式一：Windows桌面程序
+## Ⅳ.使用：Docker部署（推荐）
 
-### 使用效果
+### 1.Clone本项目到本地
 
-https://user-images.githubusercontent.com/83388493/255314887-6ab28c29-a3c6-45ba-9926-c37b50ad506a.mp4
+### 2.获取B站Cookie
 
-### 注意
-**===================================注意==================================**
-**===========================请保证电脑有Chrome浏览器环境========================**
-**========================================================================**
-
-目前这个版本匹配的是Chrome浏览器版本是：115.0.5790.102。
-如果你需要使用与你匹配的程序，请按照下面的步骤：
-
-- 查看你的Chrome版本
-- 点击这个链接：[chromedriver下载地址](http://chromedriver.storage.googleapis.com/index.html)，下载和当前Chrome匹配的chromedriver
-- 将下载的chromedriver替换程序中lib包下面原来的那个chromedriver。
-
-### 下载位置
-
-- 程序包下载地址：[BiliBili-Lucky-Draw-GUI-v1.0.0](https://github.com/rongchenlin/BiliBili-Lucky-Draw/releases/tag/BiliBili-Lucky-Draw-GUI-v1.0.0)
-
-## Ⅳ.使用方式二：部署在docker容器
-
-### 修改个人配置
+在浏览器进入[B站](https://www.bilibili.com/)，然后登录，随后按照下图获取cookie值
 
 在`.env`文件中，修改相关信息：
 
-1. 你的B站账号 
-2. **<u>IP需要真实IP或者在局域网的IP，不能使用127.0.0.0</u>**
+![](img/Readme.assets/2024-01-31-15-08-26-image.png)
 
-<img src="img/Readme.assets/image-20230630224722830-16881367056261.png" alt="image-20230630224722830"  />
+### 3.设置Cookie
 
-### 编译、启动容器
+在本项目的.env文件中，将第2步获取的cookie值填入下图位置
+
+### ![](img/Readme.assets/2024-01-31-15-02-56-image.png)
+
+### 4.在Docker中分别执行下面两条命令
 
 编译命令：
 
@@ -80,13 +64,9 @@ docker-compose up -d
 
 <u>Tip：如果要停止容器，可以使用命令：`docker-compose down`</u>
 
-### 初次使用，登录生成Cookie
+##### 5.确认是否运行成功
 
-运行容器后，访问 [your_ip:5555]()，默认密码:secret:：`secret`，扫码登录,自动生成Cookie
-
-登录成功后会在当前cookie文件夹下生成你的cookie文件：`your_bilibili_id.txt`
-
-<img src="img/Readme.assets/funtion-16874096887972.gif" alt="funtion" style="zoom: 80%;" />
+等待docker运行成功后，点击进入 your_ip:5555/ui/sessions，然后点击正在执行的项目，看是否出现如下截图
 
 ## Ⅴ.本地调试代码
 
@@ -113,4 +93,3 @@ docker-compose up -d
 **有问题欢迎大家提Issue，有时间我会帮忙解决，也请大佬有好的解决方案在Issue上分享哈:smile::smile::smile:**
 
 **如果大家觉得这个项目有点意思，期待给个Star:star:，你的Star:star:是作者更新最大的动力鸭!**
-
