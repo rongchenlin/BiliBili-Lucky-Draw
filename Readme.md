@@ -36,7 +36,7 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 
 ### 2.获取B站Cookie
 
-苹果Mac电脑参考：[点击这里](https://github.com/BilibiliVideoDownload/BilibiliVideoDownload/wiki/%E8%8E%B7%E5%8F%96SESSDATA)
+> 苹果Mac电脑参考：[点击这里](https://github.com/BilibiliVideoDownload/BilibiliVideoDownload/wiki/%E8%8E%B7%E5%8F%96SESSDATA)
 
 在浏览器进入[B站](https://www.bilibili.com/)，然后登录，随后按照下图获取cookie值
 
