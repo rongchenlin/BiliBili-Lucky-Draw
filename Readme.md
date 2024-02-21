@@ -95,3 +95,23 @@ docker-compose up -d
 **有问题欢迎大家提Issue，有时间我会帮忙解决，也请大佬有好的解决方案在Issue上分享，更加欢迎大家提出PR，成为项目的贡献者。**
 
 **如果大家觉得这个项目有点意思，期待给个Star:star:，你的Star:star:是作者更新最大的动力鸭!**
+
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="
+      https://api.star-history.com/svg?repos=rongchenlin/BiliBili-Lucky-Draw&type=Date&theme=dark
+    "
+  />
+  <source
+    media="(prefers-color-scheme: light)"
+    srcset="
+      https://api.star-history.com/svg?repos=rongchenlin/BiliBili-Lucky-Draw&type=Date
+    "
+  />
+  <img
+    alt="Star History Chart"
+    src="https://api.star-history.com/svg?repos=rongchenlin/BiliBili-Lucky-Draw&type=Date"
+  />
+</picture>
+
