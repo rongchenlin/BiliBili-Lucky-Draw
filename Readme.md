@@ -52,7 +52,7 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 
 在本项目的.env文件中，将第2步获取的cookie值填入下图位置
 
-### ![](img/Readme.assets/2024-01-31-17-13-39-image.png)
+![](img/Readme.assets/2024-01-31-17-13-39-image.png)
 
 ### 4.在Docker中分别执行下面两条命令
 
@@ -92,6 +92,26 @@ docker-compose up -d
 
 **本程序仅用于学习**
 
-**有问题欢迎大家提Issue，有时间我会帮忙解决，也请大佬有好的解决方案在Issue上分享哈:smile::smile::smile:**
+**有问题欢迎大家提Issue，有时间我会帮忙解决，也请大佬有好的解决方案在Issue上分享，更加欢迎大家提出PR，成为项目的贡献者。**
 
-**如果大家觉得这个项目有点意思，期待给个Star:star:，你的Star:star:是作者更新最大的动力鸭!**
+如果大家觉得这个项目有点意思，期待给个Star :star:，你的Star :star:是作者更新最大的动力鸭!
+
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="
+      https://api.star-history.com/svg?repos=rongchenlin/BiliBili-Lucky-Draw&type=Date&theme=dark
+    "
+  />
+  <source
+    media="(prefers-color-scheme: light)"
+    srcset="
+      https://api.star-history.com/svg?repos=rongchenlin/BiliBili-Lucky-Draw&type=Date
+    "
+  />
+  <img
+    alt="Star History Chart"
+    src="https://api.star-history.com/svg?repos=rongchenlin/BiliBili-Lucky-Draw&type=Date"
+  />
+</picture>
+

@@ -78,7 +78,8 @@ class BiliLinkShare(object):
             if 50 > percentage > 0:
                 NotifyService().fangtang_msg_push_by_content(title="程序预警，需要处理！", content=content)
             self.statistics_dao.insert(self.user_id, content, "")
-            RemoveMsgService(self.user_id, success_share_cnt, bro=self.bro, chains=self.chains).do_remove()
+            # 暂时停止移除
+            # RemoveMsgService(self.user_id, success_share_cnt, bro=self.bro, chains=self.chains).do_remove()
             self.bro.quit()
 
     def get_ignore_link(self):
