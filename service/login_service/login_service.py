@@ -16,7 +16,7 @@ class LoginService(object):
         self.bro = bro
         self.chains = chains
         self.my_user_id = my_user_id
-        mylogger.error('启动登录模块')
+        mylogger.info('启动登录模块')
 
     def login_manual(self):
         self.bro.get(globals.home_url)
@@ -49,7 +49,7 @@ class LoginService(object):
             cookie = {"domain": ".bilibili.com", "expiry": 1717635533, "name": "SESSDATA", "path": "/", "sameSite": "Lax", "value": cookie_value}
             self.bro.add_cookie(cookie)
             self.bro.refresh()
-            mylogger.error('使用cookie自动登录成功！')
+            mylogger.info('使用cookie自动登录成功！')
             random_sleep(start=1, end=2)
         except Exception as e:
             mylogger.error('登录失败')
@@ -73,7 +73,7 @@ class LoginService(object):
                 for cookie in cookie_li:
                     self.bro.add_cookie(cookie)
                 self.bro.refresh()
-            mylogger.error('使用cookie自动登录成功！')
+            mylogger.info('使用cookie自动登录成功！')
             random_sleep(start=1, end=2)
         except Exception as e:
             mylogger.error('登录失败')
