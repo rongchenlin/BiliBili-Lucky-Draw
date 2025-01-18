@@ -1,6 +1,3 @@
-
-
-version: '3'
 services:
   bili-db:
     image: mysql:5.7
@@ -22,7 +19,7 @@ services:
     image: selenium/standalone-chrome:latest
     container_name: bili-selenium
     ports:
-      - 5555:4444
+      - 4444:4444
       - 7900:7900
     shm_size: 1g
     environment:

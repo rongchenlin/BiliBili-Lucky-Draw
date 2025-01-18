@@ -59,7 +59,7 @@ So，如果有个小脚本能够帮助你去看看**今天有哪些Up有抽奖�
 编译命令：
 
 ```dockerfile
-docker-compose build
+docker-compose build --no-cache
 ```
 
 运行容器：
@@ -72,7 +72,7 @@ docker-compose up -d
 
 ### 5.确认是否运行成功
 
-等待docker运行成功后，点击进入 your_ip:5555/ui/sessions，然后点击正在执行的项目，看是否出现如下截图
+等待docker运行成功后，点击进入 your_ip:4444/ui/sessions，然后点击正在执行的项目，看是否出现如下截图
 
 ## IV.TODO && Updated
 
